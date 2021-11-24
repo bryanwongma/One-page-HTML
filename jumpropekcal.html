@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Jumprope Challenge Group</title>
+    <link rel="icon" type="image/png" href="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ETC/jrope.png">
+
+    <link rel="apple-touch-icon" type="image/png"
+        href="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ETC/jrope.png" />
+</head>
+<style>
+    input[type=text],
+    select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 4px;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    input[type=number],
+    select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 4px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    input[type=button] {
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 4px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    input[type=submit]:hover {
+        background-color: #45a049;
+    }
+
+    div {
+        margin: auto;
+        width: 75%;
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+    }
+
+    img {
+        border-radius: 8px;
+        width: 100%;
+    }
+
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
+
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    input:checked+.slider {
+        background-color: #2196F3;
+    }
+
+    input:focus+.slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked+.slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+</style>
+
+<body>
+    <div>
+        <img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ETC/jumprope_header.jpg"
+            alt="Jumprope Challenge Group">
+        <form action="/action_page.php">
+            <br>โปรแกรมนี้ใช้วิธีการคำนวนแบบเฉลี่ย ให้ใช้ในกรณีที่นาฬิกาไม่สามารถวัด Calorie ได้เหมาะสม หรือใช้เพื่อเปรียบเทียบ ไม่แนะนำให้ใช้เป็นหลัก
+            <br><br>
+            เพศ <br>
+            <select id="sex_id" name="sex1" value=''>
+                <option value="1">ชาย</option>
+                <option value="0">หญิง</option>
+            </select> <br><br>
+            อายุ<br>
+            <input type="number" name="age1" id="age_id" size="10" value=''><br><br>
+            น้ำหนักก่อนกระโดด <br>
+            <input type="number" name="weight1" id="weight_id" size="10" value=''><br><br>
+            HR เฉลี่ย <br>
+            <input type="number" name="hr1" id="hr_id" size="10" value=''><br><br>
+            เวลาที่ใช้ (นาที) <br>
+            <input type="number" name="time1" id="time_id" size="10" value=''><br><br>
+            <br>
+
+            ต้องการแสดงอายุ<br>
+            <label class="switch">
+                <input type="checkbox" checked id="checkbox1_id">
+                <span class="slider round"></span>
+            </label><br><br>
+
+            <input type="button" value='คำนวน' onClick="doEvent2();">
+        </form>
+    </div>
+    <script>
+        function doEvent2() {
+            var age = age_id.value;
+            var user_maxhr = 220 - age_id.value;
+            var user_weight = weight_id.value;
+            var user_hr = hr_id.value;
+            var user_time = time_id.value;
+            var burn = weight_id.value;
+            var user_sex = sex_id.value;
+            var checkbox1 = checkbox1_id.checked;
+            var burnperminute = user_weight / (user_maxhr * 5 / user_hr);
+            if (user_sex > 0) {
+                var sex_text = "ชาย"
+                var burn_total = Math.round((burnperminute * user_time) * 0.925);
+            } else {
+                var sex_text = "หญิง"
+                var burn_total = Math.round((burnperminute * user_time) * 0.925 * 0.933);
+            }
+
+            if (checkbox1 == 0) {
+                window.alert("โปรแกรมนี้ใช้วิธีการคำนวนแบบเฉลี่ย ให้ใช้ในกรณีที่นาฬิกาไม่สามารถวัด Calorie ได้เหมาะสม หรือใช้เพื่อเปรียบเทียบ ไม่แนะนำให้ใช้เป็นหลัก" + "\n\nเพศ: " + sex_text + "\nอายุ: " + "** ปิดบัง **" + "\n น้ำหนัก: " + user_weight + "\n HR เฉลี่ย: " + user_hr + "\n เวลาที่ใช้ในการกระโดด(นาที): " + user_time + "\n\n ใช้พลังไปทั้งหมด: " + burn_total + " kcal");
+
+            } else {
+                window.alert("โปรแกรมนี้ใช้วิธีการคำนวนแบบเฉลี่ย ให้ใช้ในกรณีที่นาฬิกาไม่สามารถวัด Calorie ได้เหมาะสม หรือใช้เพื่อเปรียบเทียบ ไม่แนะนำให้ใช้เป็นหลัก" + "\n\nเพศ: " + sex_text + "\nอายุ: " + age + "\nน้ำหนัก: " + user_weight + "\nHR เฉลี่ย: " + user_hr + "\nเวลาที่ใช้ในการกระโดด(นาที): " + user_time + "\n\n ใช้พลังไปทั้งหมด: " + burn_total + " kcal");
+
+            }
+
+             }
+    </script>
+</body>
+
+</html>
