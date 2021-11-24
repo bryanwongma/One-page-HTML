@@ -1,0 +1,2402 @@
+<head>
+    <style>
+        #monsters {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #monsters td,
+        #monsters th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #monsters tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #monsters tr:hover {
+            background-color: #ddd;
+        }
+
+        #monsters th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        #myInput {
+            background-image: url('/css/searchicon.png">');
+            background-position: 10px 12px;
+            background-repeat: no-repeat;
+            width: 39%;
+            font-size: 16px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
+        }
+
+        #MONTYPE {
+            background-image: url('/css/searchicon.png">');
+            background-position: 10px 12px;
+            background-repeat: no-repeat;
+            width: 20%;
+            font-size: 16px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
+        }
+
+        #MONELEMENT {
+            background-image: url('/css/searchicon.png">');
+            background-position: 10px 12px;
+            background-repeat: no-repeat;
+            width: 20%;
+            font-size: 16px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
+        }
+
+        #MONSIZE {
+            background-image: url('/css/searchicon.png">');
+            background-position: 10px 12px;
+            background-repeat: no-repeat;
+            width: 20%;
+            font-size: 16px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
+        }
+
+        .top-container {
+            background-color: #f1f1f1;
+            padding: 0px;
+            text-align: center;
+        }
+
+        .header {
+            padding: 5px 5px;
+            background: #555;
+            color: #f1f1f1;
+        }
+
+        /* Page content */
+        .content {
+            padding: 16px;
+        }
+
+        /* The sticky class is added to the header with JS when it reaches its scroll position */
+        .sticky {
+            position: fixed;
+            top: 0;
+            width: 100%
+        }
+
+        /* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
+        .sticky+.content {
+            padding-top: 102px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header" id="myHeader">
+        <h2>ROX Database</h2>
+
+        <div class="btn-group" style="width:100%">
+            <input type="text" id="myInput" onkeyup="search()" placeholder="Search for names..">
+            <select name="MONTYPE" id="MONTYPE" onchange="filterMONTYPE()">
+                <option value="0">Select Type:</option>
+                <option value="Plant">Plant</option>
+                <option value="Insect">Insect</option>
+                <option value="Brute">Brute</option>
+                <option value="Formless">Formless</option>
+                <option value="Fish">Fish</option>
+                <option value="Undead">Undead</option>
+                <option value="Demon">Demon</option>
+                <option value="Demi-Human">Demi-Human</option>
+                <option value="Dragon">Dragon</option>
+            </select>
+            <select name="MONELEMENT" id="MONELEMENT" onchange="filterMONELEMENT()">
+                <option value="0">Select Element:</option>
+                <option value="Water">Water</option>
+                <option value="Earth">Earth</option>
+                <option value="Neutral">Neutral</option>
+                <option value="Fire">Fire</option>
+                <option value="Wind">Wind</option>
+                <option value="Shadow">Shadow</option>
+                <option value="Poison">Poison</option>
+                <option value="Undead">Undead</option>
+                <option value="Ghost">Ghost</option>
+            </select>
+            <select name="MONSIZE" id="MONSIZE" onchange="filterMONSIZE()">
+                <option value="0">Select Size:</option>
+                <option value="Small">Small</option>
+                <option value="Medium">Medium</option>
+                <option value="Large">Large</option>
+            </select>
+
+
+        </div>
+
+    </div>
+    <table id="monsters" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+        <thead>
+
+            <tr>
+                <th class="th-sm">No</th>
+                <th class="th-sm">IMG</td>
+                <th class="th-sm">Name</th>
+                <th class="th-sm">LV</th>
+                <th class="th-sm">Type</th>
+                <th class="th-sm">Element</th>
+                <th class="th-sm">Size</th>
+                <th class="th-sm">HP</th>
+                <th class="th-sm">BASE EXP</th>
+                <th class="th-sm">JOB EXP</th>
+                <th class="th-sm">HP/BASE</th>
+                <th class="th-sm">HP/JOB</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>10010</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10010.png">
+                </td>
+                <td>Poring</td>
+                <td>1</td>
+                <td>Plant</td>
+                <td>Water</td>
+                <td>Medium</td>
+                <td>118</td>
+                <td>32</td>
+                <td>32</td>
+                <td>4</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>10020</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10020.png">
+                </td>
+                <td>Fabre</td>
+                <td>2</td>
+                <td>Insect</td>
+                <td>Earth</td>
+                <td>Small</td>
+                <td>65</td>
+                <td>17</td>
+                <td>17</td>
+                <td>4</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>10030</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10030.png">
+                </td>
+                <td>Pupa</td>
+                <td>3</td>
+                <td>Insect</td>
+                <td>Earth</td>
+                <td>Small</td>
+                <td>72</td>
+                <td>18</td>
+                <td>18</td>
+                <td>4</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>10040</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10040.png">
+                </td>
+                <td>Lunatic</td>
+                <td>4</td>
+                <td>Brute</td>
+                <td>Neutral</td>
+                <td>Small</td>
+                <td>80</td>
+                <td>19</td>
+                <td>19</td>
+                <td>5</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>10050</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10050.png">
+                </td>
+                <td>Pecopeco Egg</td>
+                <td>5</td>
+                <td>Formless</td>
+                <td>Neutral</td>
+                <td>Small</td>
+                <td>88</td>
+                <td>20</td>
+                <td>20</td>
+                <td>5</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>10060</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10060.png">
+                </td>
+                <td>Picky</td>
+                <td>6</td>
+                <td>Brute</td>
+                <td>Fire</td>
+                <td>Small</td>
+                <td>96</td>
+                <td>21</td>
+                <td>21</td>
+                <td>5</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>10070</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10070.png">
+                </td>
+                <td>Drops</td>
+                <td>7</td>
+                <td>Plant</td>
+                <td>Fire</td>
+                <td>Medium</td>
+                <td>211</td>
+                <td>33</td>
+                <td>55</td>
+                <td>7</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>10080</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10080.png">
+                </td>
+                <td>Condor</td>
+                <td>8</td>
+                <td>Brute</td>
+                <td>Wind</td>
+                <td>Medium</td>
+                <td>230</td>
+                <td>46</td>
+                <td>46</td>
+                <td>5</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>10090</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10090.png">
+                </td>
+                <td>Picky (Shell)</td>
+                <td>9</td>
+                <td>Brute</td>
+                <td>Fire</td>
+                <td>Small</td>
+                <td>126</td>
+                <td>24</td>
+                <td>24</td>
+                <td>6</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>10100</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10100.png">
+                </td>
+                <td>Willow</td>
+                <td>10</td>
+                <td>Plant</td>
+                <td>Earth</td>
+                <td>Medium</td>
+                <td>273</td>
+                <td>50</td>
+                <td>50</td>
+                <td>6</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>10110</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10110.png">
+                </td>
+                <td>Grasshopper</td>
+                <td>11</td>
+                <td>Insect</td>
+                <td>Earth</td>
+                <td>Medium</td>
+                <td>338</td>
+                <td>78</td>
+                <td>26</td>
+                <td>5</td>
+                <td>13</td>
+            </tr>
+            <tr>
+                <td>10120</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10120.png">
+                </td>
+                <td>Chonchon</td>
+                <td>12</td>
+                <td>Insect</td>
+                <td>Wind</td>
+                <td>Small</td>
+                <td>204</td>
+                <td>41</td>
+                <td>14</td>
+                <td>5</td>
+                <td>15</td>
+            </tr>
+            <tr>
+                <td>10130</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10130.png">
+                </td>
+                <td>Thief Bug Egg</td>
+                <td>13</td>
+                <td>Insect</td>
+                <td>Shadow</td>
+                <td>Small</td>
+                <td>242</td>
+                <td>28</td>
+                <td>28</td>
+                <td>9</td>
+                <td>9</td>
+            </tr>
+            <tr>
+                <td>10140</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10140.png">
+                </td>
+                <td>Mandrake</td>
+                <td>14</td>
+                <td>Plant</td>
+                <td>Earth</td>
+                <td>Medium</td>
+                <td>567</td>
+                <td>44</td>
+                <td>73</td>
+                <td>13</td>
+                <td>8</td>
+            </tr>
+            <tr>
+                <td>10150</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10150.png">
+                </td>
+                <td>Thief Bug</td>
+                <td>15</td>
+                <td>Insect</td>
+                <td>Neutral</td>
+                <td>Small</td>
+                <td>328</td>
+                <td>23</td>
+                <td>38</td>
+                <td>15</td>
+                <td>9</td>
+            </tr>
+            <tr>
+                <td>10160</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10160.png">
+                </td>
+                <td>Savage Bebe</td>
+                <td>16</td>
+                <td>Brute</td>
+                <td>Earth</td>
+                <td>Small</td>
+                <td>375</td>
+                <td>31</td>
+                <td>31</td>
+                <td>13</td>
+                <td>13</td>
+            </tr>
+            <tr>
+                <td>10170</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10170.png">
+                </td>
+                <td>Familiar</td>
+                <td>17</td>
+                <td>Brute</td>
+                <td>Shadow</td>
+                <td>Small</td>
+                <td>426</td>
+                <td>32</td>
+                <td>32</td>
+                <td>14</td>
+                <td>14</td>
+            </tr>
+            <tr>
+                <td>10180</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10180.png">
+                </td>
+                <td>Baby Desert Wolf</td>
+                <td>18</td>
+                <td>Brute</td>
+                <td>Fire</td>
+                <td>Small</td>
+                <td>481</td>
+                <td>33</td>
+                <td>33</td>
+                <td>15</td>
+                <td>15</td>
+            </tr>
+            <tr>
+                <td>10190</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10190.png">
+                </td>
+                <td>Female Thief Bug</td>
+                <td>19</td>
+                <td>Insect</td>
+                <td>Shadow</td>
+                <td>Medium</td>
+                <td>1077</td>
+                <td>68</td>
+                <td>68</td>
+                <td>16</td>
+                <td>16</td>
+            </tr>
+            <tr>
+                <td>10200</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10200.png">
+                </td>
+                <td>Poporing</td>
+                <td>20</td>
+                <td>Plant</td>
+                <td>Poison</td>
+                <td>Medium</td>
+                <td>1201</td>
+                <td>70</td>
+                <td>70</td>
+                <td>18</td>
+                <td>18</td>
+            </tr>
+            <tr>
+                <td>10210</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10210.png">
+                </td>
+                <td>Plankton</td>
+                <td>21</td>
+                <td>Plant</td>
+                <td>Water</td>
+                <td>Small</td>
+                <td>674</td>
+                <td>45</td>
+                <td>27</td>
+                <td>15</td>
+                <td>25</td>
+            </tr>
+            <tr>
+                <td>10220</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10220.png">
+                </td>
+                <td>Hornet</td>
+                <td>22</td>
+                <td>Insect</td>
+                <td>Wind</td>
+                <td>Small</td>
+                <td>752</td>
+                <td>37</td>
+                <td>37</td>
+                <td>21</td>
+                <td>21</td>
+            </tr>
+            <tr>
+                <td>10230</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10230.png">
+                </td>
+                <td>Tarou</td>
+                <td>23</td>
+                <td>Brute</td>
+                <td>Shadow</td>
+                <td>Small</td>
+                <td>853</td>
+                <td>29</td>
+                <td>48</td>
+                <td>30</td>
+                <td>18</td>
+            </tr>
+            <tr>
+                <td>10240</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10240.png">
+                </td>
+                <td>Ambernite</td>
+                <td>24</td>
+                <td>Insect</td>
+                <td>Water</td>
+                <td>Large</td>
+                <td>2934</td>
+                <td>176</td>
+                <td>59</td>
+                <td>17</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td>10250</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10250.png">
+                </td>
+                <td>Male Thief Bug</td>
+                <td>25</td>
+                <td>Insect</td>
+                <td>Shadow</td>
+                <td>Medium</td>
+                <td>2224</td>
+                <td>60</td>
+                <td>100</td>
+                <td>38</td>
+                <td>23</td>
+            </tr>
+            <tr>
+                <td>10260</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10260.png">
+                </td>
+                <td>Spore</td>
+                <td>26</td>
+                <td>Plant</td>
+                <td>Water</td>
+                <td>Medium</td>
+                <td>2509</td>
+                <td>62</td>
+                <td>103</td>
+                <td>41</td>
+                <td>25</td>
+            </tr>
+            <tr>
+                <td>10270</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10270.png">
+                </td>
+                <td>Creamy</td>
+                <td>27</td>
+                <td>Insect</td>
+                <td>Wind</td>
+                <td>Small</td>
+                <td>1406</td>
+                <td>63</td>
+                <td>21</td>
+                <td>23</td>
+                <td>67</td>
+            </tr>
+            <tr>
+                <td>10280</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10280.png">
+                </td>
+                <td>Poison Spore</td>
+                <td>28</td>
+                <td>Plant</td>
+                <td>Poison</td>
+                <td>Medium</td>
+                <td>3132</td>
+                <td>43</td>
+                <td>129</td>
+                <td>73</td>
+                <td>25</td>
+            </tr>
+            <tr>
+                <td>10290</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10290.png">
+                </td>
+                <td>Steel Chonchon</td>
+                <td>29</td>
+                <td>Insect</td>
+                <td>Wind</td>
+                <td>Small</td>
+                <td>1736</td>
+                <td>55</td>
+                <td>33</td>
+                <td>32</td>
+                <td>53</td>
+            </tr>
+            <tr>
+                <td>10300</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10300.png">
+                </td>
+                <td>Drainliar</td>
+                <td>30</td>
+                <td>Brute</td>
+                <td>Shadow</td>
+                <td>Small</td>
+                <td>1915</td>
+                <td>34</td>
+                <td>56</td>
+                <td>57</td>
+                <td>35</td>
+            </tr>
+            <tr>
+                <td>10310</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10310.png">
+                </td>
+                <td>Stainer</td>
+                <td>31</td>
+                <td>Insect</td>
+                <td>Wind</td>
+                <td>Small</td>
+                <td>3174</td>
+                <td>46</td>
+                <td>46</td>
+                <td>69</td>
+                <td>69</td>
+            </tr>
+            <tr>
+                <td>10320</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10320.png">
+                </td>
+                <td>Coco</td>
+                <td>31</td>
+                <td>Brute</td>
+                <td>Earth</td>
+                <td>Small</td>
+                <td>3174</td>
+                <td>46</td>
+                <td>46</td>
+                <td>69</td>
+                <td>69</td>
+            </tr>
+            <tr>
+                <td>10330</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10330.png">
+                </td>
+                <td>Smokie</td>
+                <td>32</td>
+                <td>Brute</td>
+                <td>Earth</td>
+                <td>Small</td>
+                <td>3497</td>
+                <td>71</td>
+                <td>24</td>
+                <td>50</td>
+                <td>146</td>
+            </tr>
+            <tr>
+                <td>10340</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10340.png">
+                </td>
+                <td>Dustiness</td>
+                <td>32</td>
+                <td>Insect</td>
+                <td>Wind</td>
+                <td>Small</td>
+                <td>3497</td>
+                <td>35</td>
+                <td>59</td>
+                <td>100</td>
+                <td>60</td>
+            </tr>
+            <tr>
+                <td>10350</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10350.png">
+                </td>
+                <td>Roda Frog</td>
+                <td>33</td>
+                <td>Fish</td>
+                <td>Water</td>
+                <td>Medium</td>
+                <td>7686</td>
+                <td>48</td>
+                <td>144</td>
+                <td>161</td>
+                <td>54</td>
+            </tr>
+            <tr>
+                <td>10360</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10360.png">
+                </td>
+                <td>Rocker</td>
+                <td>33</td>
+                <td>Insect</td>
+                <td>Earth</td>
+                <td>Medium</td>
+                <td>7686</td>
+                <td>144</td>
+                <td>48</td>
+                <td>54</td>
+                <td>161</td>
+            </tr>
+            <tr>
+                <td>10370</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10370.png">
+                </td>
+                <td>Dead Plankton</td>
+                <td>34</td>
+                <td>Undead</td>
+                <td>Undead</td>
+                <td>Small</td>
+                <td>4212</td>
+                <td>49</td>
+                <td>49</td>
+                <td>86</td>
+                <td>86</td>
+            </tr>
+            <tr>
+                <td>10380</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10380.png">
+                </td>
+                <td>Caramel</td>
+                <td>34</td>
+                <td>Insect</td>
+                <td>Earth</td>
+                <td>Small</td>
+                <td>4212</td>
+                <td>25</td>
+                <td>74</td>
+                <td>169</td>
+                <td>57</td>
+            </tr>
+            <tr>
+                <td>10390</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10390.png">
+                </td>
+                <td>Kukre</td>
+                <td>35</td>
+                <td>Insect</td>
+                <td>Water</td>
+                <td>Small</td>
+                <td>4607</td>
+                <td>50</td>
+                <td>50</td>
+                <td>93</td>
+                <td>93</td>
+            </tr>
+            <tr>
+                <td>10400</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10400.png">
+                </td>
+                <td>Zombie</td>
+                <td>35</td>
+                <td>Undead</td>
+                <td>Undead</td>
+                <td>Medium</td>
+                <td>9213</td>
+                <td>125</td>
+                <td>75</td>
+                <td>74</td>
+                <td>123</td>
+            </tr>
+            <tr>
+                <td>10410</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10410.png">
+                </td>
+                <td>Hydra</td>
+                <td>36</td>
+                <td>Plant</td>
+                <td>Water</td>
+                <td>Small</td>
+                <td>5040</td>
+                <td>64</td>
+                <td>38</td>
+                <td>79</td>
+                <td>133</td>
+            </tr>
+            <tr>
+                <td>10420</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10420.png">
+                </td>
+                <td>Hornet</td>
+                <td>36</td>
+                <td>Insect</td>
+                <td>Earth</td>
+                <td>Medium</td>
+                <td>10080</td>
+                <td>128</td>
+                <td>77</td>
+                <td>79</td>
+                <td>131</td>
+            </tr>
+            <tr>
+                <td>10430</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10430.png">
+                </td>
+                <td>Yoyo</td>
+                <td>37</td>
+                <td>Brute</td>
+                <td>Earth</td>
+                <td>Small</td>
+                <td>5503</td>
+                <td>78</td>
+                <td>26</td>
+                <td>71</td>
+                <td>212</td>
+            </tr>
+            <tr>
+                <td>10440</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10440.png">
+                </td>
+                <td>Martin</td>
+                <td>37</td>
+                <td>Brute</td>
+                <td>Earth</td>
+                <td>Small</td>
+                <td>5503</td>
+                <td>26</td>
+                <td>78</td>
+                <td>212</td>
+                <td>71</td>
+            </tr>
+            <tr>
+                <td>10450</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10450.png">
+                </td>
+                <td>Giearth</td>
+                <td>38</td>
+                <td>Demon</td>
+                <td>Earth</td>
+                <td>Small</td>
+                <td>5997</td>
+                <td>53</td>
+                <td>53</td>
+                <td>114</td>
+                <td>114</td>
+            </tr>
+            <tr>
+                <td>10460</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10460.png">
+                </td>
+                <td>Axe-wielding Skel Pirate</td>
+                <td>38</td>
+                <td>Undead</td>
+                <td>Undead</td>
+                <td>Medium</td>
+                <td>11994</td>
+                <td>106</td>
+                <td>106</td>
+                <td>114</td>
+                <td>114</td>
+            </tr>
+            <tr>
+                <td>10470</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10470.png">
+                </td>
+                <td>Dagger-wielding Skel Pirate</td>
+                <td>39</td>
+                <td>Undead</td>
+                <td>Undead</td>
+                <td>Medium</td>
+                <td>13046</td>
+                <td>162</td>
+                <td>54</td>
+                <td>81</td>
+                <td>242</td>
+            </tr>
+            <tr>
+                <td>10480</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10480.png">
+                </td>
+                <td>Pirate Skeleton</td>
+                <td>39</td>
+                <td>Undead</td>
+                <td>Undead</td>
+                <td>Medium</td>
+                <td>13046</td>
+                <td>108</td>
+                <td>108</td>
+                <td>121</td>
+                <td>121</td>
+            </tr>
+            <tr>
+                <td>10490</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10490.png">
+                </td>
+                <td>Skeleton Worker</td>
+                <td>40</td>
+                <td>Undead</td>
+                <td>Undead</td>
+                <td>Medium</td>
+                <td>14165</td>
+                <td>110</td>
+                <td>110</td>
+                <td>129</td>
+                <td>129</td>
+            </tr>
+            <tr>
+                <td>10500</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10500.png">
+                </td>
+                <td>Hunter Fly</td>
+                <td>40</td>
+                <td>Insect</td>
+                <td>Wind</td>
+                <td>Small</td>
+                <td>7083</td>
+                <td>69</td>
+                <td>41</td>
+                <td>103</td>
+                <td>173</td>
+            </tr>
+            <tr>
+                <td>10510</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10510.png">
+                </td>
+                <td>Myst</td>
+                <td>41</td>
+                <td>Formless</td>
+                <td>Poison</td>
+                <td>Large</td>
+                <td>33630</td>
+                <td>214</td>
+                <td>128</td>
+                <td>158</td>
+                <td>263</td>
+            </tr>
+            <tr>
+                <td>10520</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10520.png">
+                </td>
+                <td>Whisper</td>
+                <td>41</td>
+                <td>Demon</td>
+                <td>Ghost</td>
+                <td>Small</td>
+                <td>11210</td>
+                <td>43</td>
+                <td>71</td>
+                <td>261</td>
+                <td>158</td>
+            </tr>
+            <tr>
+                <td>10530</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10530.png">
+                </td>
+                <td>Muka</td>
+                <td>42</td>
+                <td>Plant</td>
+                <td>Earth</td>
+                <td>Large</td>
+                <td>38193</td>
+                <td>221</td>
+                <td>133</td>
+                <td>173</td>
+                <td>288</td>
+            </tr>
+            <tr>
+                <td>10540</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10540.png">
+                </td>
+                <td>Argos</td>
+                <td>42</td>
+                <td>Insect</td>
+                <td>Poison</td>
+                <td>Large</td>
+                <td>38193</td>
+                <td>133</td>
+                <td>221</td>
+                <td>288</td>
+                <td>173</td>
+            </tr>
+            <tr>
+                <td>10550</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10550.png">
+                </td>
+                <td>Pecopeco</td>
+                <td>43</td>
+                <td>Brute</td>
+                <td>Fire</td>
+                <td>Large</td>
+                <td>43057</td>
+                <td>275</td>
+                <td>92</td>
+                <td>157</td>
+                <td>469</td>
+            </tr>
+            <tr>
+                <td>10560</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10560.png">
+                </td>
+                <td>Mantis</td>
+                <td>43</td>
+                <td>Insect</td>
+                <td>Earth</td>
+                <td>Medium</td>
+                <td>28705</td>
+                <td>122</td>
+                <td>122</td>
+                <td>236</td>
+                <td>236</td>
+            </tr>
+            <tr>
+                <td>10570</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10570.png">
+                </td>
+                <td>Metaller</td>
+                <td>44</td>
+                <td>Insect</td>
+                <td>Fire</td>
+                <td>Medium</td>
+                <td>32156</td>
+                <td>158</td>
+                <td>95</td>
+                <td>204</td>
+                <td>339</td>
+            </tr>
+            <tr>
+                <td>10580</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10580.png">
+                </td>
+                <td>Savage</td>
+                <td>44</td>
+                <td>Brute</td>
+                <td>Earth</td>
+                <td>Large</td>
+                <td>48234</td>
+                <td>142</td>
+                <td>236</td>
+                <td>340</td>
+                <td>205</td>
+            </tr>
+            <tr>
+                <td>10590</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10590.png">
+                </td>
+                <td>Flora</td>
+                <td>45</td>
+                <td>Plant</td>
+                <td>Earth</td>
+                <td>Large</td>
+                <td>53738</td>
+                <td>195</td>
+                <td>195</td>
+                <td>276</td>
+                <td>276</td>
+            </tr>
+            <tr>
+                <td>10600</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10600.png">
+                </td>
+                <td>Anaconda</td>
+                <td>45</td>
+                <td>Brute</td>
+                <td>Poison</td>
+                <td>Medium</td>
+                <td>35825</td>
+                <td>65</td>
+                <td>195</td>
+                <td>552</td>
+                <td>184</td>
+            </tr>
+            <tr>
+                <td>10610</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10610.png">
+                </td>
+                <td>Scorpion</td>
+                <td>46</td>
+                <td>Insect</td>
+                <td>Fire</td>
+                <td>Small</td>
+                <td>19860</td>
+                <td>67</td>
+                <td>67</td>
+                <td>297</td>
+                <td>297</td>
+            </tr>
+            <tr>
+                <td>10620</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10620.png">
+                </td>
+                <td>Sasquatch</td>
+                <td>46</td>
+                <td>Brute</td>
+                <td>Neutral</td>
+                <td>Large</td>
+                <td>59581</td>
+                <td>201</td>
+                <td>201</td>
+                <td>297</td>
+                <td>297</td>
+            </tr>
+            <tr>
+                <td>10630</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10630.png">
+                </td>
+                <td>Golem</td>
+                <td>47</td>
+                <td>Formless</td>
+                <td>Neutral</td>
+                <td>Large</td>
+                <td>65777</td>
+                <td>259</td>
+                <td>155</td>
+                <td>254</td>
+                <td>425</td>
+            </tr>
+            <tr>
+                <td>10640</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10640.png">
+                </td>
+                <td>Side Winder</td>
+                <td>47</td>
+                <td>Brute</td>
+                <td>Poison</td>
+                <td>Medium</td>
+                <td>43851</td>
+                <td>138</td>
+                <td>138</td>
+                <td>318</td>
+                <td>318</td>
+            </tr>
+            <tr>
+                <td>10650</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10650.png">
+                </td>
+                <td>Ant Larva</td>
+                <td>48</td>
+                <td>Insect</td>
+                <td>Neutral</td>
+                <td>Small</td>
+                <td>24202</td>
+                <td>71</td>
+                <td>71</td>
+                <td>341</td>
+                <td>341</td>
+            </tr>
+            <tr>
+                <td>10660</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10660.png">
+                </td>
+                <td>Magnolia</td>
+                <td>48</td>
+                <td>Demon</td>
+                <td>Water</td>
+                <td>Small</td>
+                <td>24202</td>
+                <td>89</td>
+                <td>53</td>
+                <td>272</td>
+                <td>457</td>
+            </tr>
+            <tr>
+                <td>10670</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10670.png">
+                </td>
+                <td>Matyr</td>
+                <td>49</td>
+                <td>Brute</td>
+                <td>Shadow</td>
+                <td>Medium</td>
+                <td>53407</td>
+                <td>146</td>
+                <td>146</td>
+                <td>366</td>
+                <td>366</td>
+            </tr>
+            <tr>
+                <td>10680</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10680.png">
+                </td>
+                <td>Hode</td>
+                <td>49</td>
+                <td>Insect</td>
+                <td>Earth</td>
+                <td>Medium</td>
+                <td>53407</td>
+                <td>146</td>
+                <td>146</td>
+                <td>366</td>
+                <td>366</td>
+            </tr>
+            <tr>
+                <td>10690</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10690.png">
+                </td>
+                <td>Andre</td>
+                <td>50</td>
+                <td>Insect</td>
+                <td>Earth</td>
+                <td>Small</td>
+                <td>29349</td>
+                <td>75</td>
+                <td>75</td>
+                <td>392</td>
+                <td>392</td>
+            </tr>
+            <tr>
+                <td>10700</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10700.png">
+                </td>
+                <td>Desert Wolf</td>
+                <td>50</td>
+                <td>Brute</td>
+                <td>Fire</td>
+                <td>Medium</td>
+                <td>58698</td>
+                <td>113</td>
+                <td>188</td>
+                <td>520</td>
+                <td>313</td>
+            </tr>
+            <tr>
+                <td>10710</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10710.png">
+                </td>
+                <td>Soldier Skeleton</td>
+                <td>51</td>
+                <td>Undead</td>
+                <td>Undead</td>
+                <td>Medium</td>
+                <td>80719</td>
+                <td>193</td>
+                <td>116</td>
+                <td>419</td>
+                <td>696</td>
+            </tr>
+            <tr>
+                <td>10720</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10720.png">
+                </td>
+                <td>Piere</td>
+                <td>51</td>
+                <td>Insect</td>
+                <td>Earth</td>
+                <td>Small</td>
+                <td>40360</td>
+                <td>77</td>
+                <td>77</td>
+                <td>525</td>
+                <td>525</td>
+            </tr>
+            <tr>
+                <td>10730</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10730.png">
+                </td>
+                <td>Argiope</td>
+                <td>52</td>
+                <td>Insect</td>
+                <td>Poison</td>
+                <td>Large</td>
+                <td>132737</td>
+                <td>237</td>
+                <td>237</td>
+                <td>561</td>
+                <td>561</td>
+            </tr>
+            <tr>
+                <td>10740</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10740.png">
+                </td>
+                <td>Vadon</td>
+                <td>52</td>
+                <td>Fish</td>
+                <td>Water</td>
+                <td>Small</td>
+                <td>44246</td>
+                <td>59</td>
+                <td>99</td>
+                <td>750</td>
+                <td>447</td>
+            </tr>
+            <tr>
+                <td>10750</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10750.png">
+                </td>
+                <td>Archer Skeleton</td>
+                <td>53</td>
+                <td>Undead</td>
+                <td>Undead</td>
+                <td>Medium</td>
+                <td>96706</td>
+                <td>122</td>
+                <td>203</td>
+                <td>793</td>
+                <td>477</td>
+            </tr>
+            <tr>
+                <td>10760</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10760.png">
+                </td>
+                <td>Marina</td>
+                <td>53</td>
+                <td>Plant</td>
+                <td>Water</td>
+                <td>Small</td>
+                <td>48353</td>
+                <td>61</td>
+                <td>101</td>
+                <td>793</td>
+                <td>479</td>
+            </tr>
+            <tr>
+                <td>10770</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10770.png">
+                </td>
+                <td>Deniro</td>
+                <td>54</td>
+                <td>Insect</td>
+                <td>Earth</td>
+                <td>Small</td>
+                <td>52690</td>
+                <td>83</td>
+                <td>83</td>
+                <td>635</td>
+                <td>635</td>
+            </tr>
+            <tr>
+                <td>10780</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10780.png">
+                </td>
+                <td>Frilldora</td>
+                <td>54</td>
+                <td>Brute</td>
+                <td>Fire</td>
+                <td>Medium</td>
+                <td>105379</td>
+                <td>166</td>
+                <td>166</td>
+                <td>635</td>
+                <td>635</td>
+            </tr>
+            <tr>
+                <td>10790</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10790.png">
+                </td>
+                <td>Cornutus</td>
+                <td>55</td>
+                <td>Fish</td>
+                <td>Water</td>
+                <td>Small</td>
+                <td>57265</td>
+                <td>64</td>
+                <td>106</td>
+                <td>895</td>
+                <td>541</td>
+            </tr>
+            <tr>
+                <td>10800</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10800.png">
+                </td>
+                <td>Vitata</td>
+                <td>55</td>
+                <td>Insect</td>
+                <td>Earth</td>
+                <td>Small</td>
+                <td>57265</td>
+                <td>43</td>
+                <td>128</td>
+                <td>1332</td>
+                <td>448</td>
+            </tr>
+            <tr>
+                <td>10810</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10810.png">
+                </td>
+                <td>Mummy</td>
+                <td>56</td>
+                <td>Undead</td>
+                <td>Undead</td>
+                <td>Medium</td>
+                <td>124173</td>
+                <td>261</td>
+                <td>87</td>
+                <td>476</td>
+                <td>1428</td>
+            </tr>
+            <tr>
+                <td>10820</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10820.png">
+                </td>
+                <td>Phen</td>
+                <td>56</td>
+                <td>Fish</td>
+                <td>Water</td>
+                <td>Medium</td>
+                <td>124173</td>
+                <td>131</td>
+                <td>218</td>
+                <td>948</td>
+                <td>570</td>
+            </tr>
+            <tr>
+                <td>10830</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10830.png">
+                </td>
+                <td>Verit</td>
+                <td>57</td>
+                <td>Undead</td>
+                <td>Undead</td>
+                <td>Medium</td>
+                <td>134330</td>
+                <td>178</td>
+                <td>178</td>
+                <td>755</td>
+                <td>755</td>
+            </tr>
+            <tr>
+                <td>10840</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10840.png">
+                </td>
+                <td>Marduk</td>
+                <td>57</td>
+                <td>Demi-Human</td>
+                <td>Fire</td>
+                <td>Large</td>
+                <td>201495</td>
+                <td>200</td>
+                <td>334</td>
+                <td>1008</td>
+                <td>604</td>
+            </tr>
+            <tr>
+                <td>10850</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10850.png">
+                </td>
+                <td>Marine Sphere</td>
+                <td>58</td>
+                <td>Plant</td>
+                <td>Water</td>
+                <td>Small</td>
+                <td>72001</td>
+                <td>91</td>
+                <td>91</td>
+                <td>792</td>
+                <td>792</td>
+            </tr>
+            <tr>
+                <td>10860</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10860.png">
+                </td>
+                <td>Isis</td>
+                <td>58</td>
+                <td>Demon</td>
+                <td>Shadow</td>
+                <td>Large</td>
+                <td>216003</td>
+                <td>341</td>
+                <td>205</td>
+                <td>634</td>
+                <td>1054</td>
+            </tr>
+            <tr>
+                <td>10870</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10870.png">
+                </td>
+                <td>Swordfish</td>
+                <td>59</td>
+                <td>Fish</td>
+                <td>Water</td>
+                <td>Large</td>
+                <td>231134</td>
+                <td>140</td>
+                <td>419</td>
+                <td>1651</td>
+                <td>552</td>
+            </tr>
+            <tr>
+                <td>10880</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10880.png">
+                </td>
+                <td>Minorous</td>
+                <td>59</td>
+                <td>Brute</td>
+                <td>Fire</td>
+                <td>Large</td>
+                <td>231134</td>
+                <td>349</td>
+                <td>209</td>
+                <td>663</td>
+                <td>1106</td>
+            </tr>
+            <tr>
+                <td>10890</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10890.png">
+                </td>
+                <td>Zerom</td>
+                <td>60</td>
+                <td>Demi-Human</td>
+                <td>Fire</td>
+                <td>Medium</td>
+                <td>164604</td>
+                <td>238</td>
+                <td>143</td>
+                <td>692</td>
+                <td>1152</td>
+            </tr>
+            <tr>
+                <td>10900</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10900.png">
+                </td>
+                <td>Marse</td>
+                <td>60</td>
+                <td>Fish</td>
+                <td>Water</td>
+                <td>Small</td>
+                <td>82302</td>
+                <td>95</td>
+                <td>95</td>
+                <td>867</td>
+                <td>867</td>
+            </tr>
+            <tr>
+                <td>10910</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10910.png">
+                </td>
+                <td>Obeaune</td>
+                <td>61</td>
+                <td>Fish</td>
+                <td>Water</td>
+                <td>Medium</td>
+                <td>210241</td>
+                <td>147</td>
+                <td>245</td>
+                <td>1431</td>
+                <td>859</td>
+            </tr>
+            <tr>
+                <td>10920</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10920.png">
+                </td>
+                <td>Arclouse</td>
+                <td>61</td>
+                <td>Insect</td>
+                <td>Earth</td>
+                <td>Small</td>
+                <td>105121</td>
+                <td>123</td>
+                <td>74</td>
+                <td>855</td>
+                <td>1421</td>
+            </tr>
+            <tr>
+                <td>10930</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10930.png">
+                </td>
+                <td>Requiem</td>
+                <td>62</td>
+                <td>Demi-Human</td>
+                <td>Shadow</td>
+                <td>Medium</td>
+                <td>224568</td>
+                <td>253</td>
+                <td>152</td>
+                <td>888</td>
+                <td>1478</td>
+            </tr>
+            <tr>
+                <td>10940</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10940.png">
+                </td>
+                <td>Wormtail</td>
+                <td>62</td>
+                <td>Plant</td>
+                <td>Earth</td>
+                <td>Medium</td>
+                <td>224568</td>
+                <td>202</td>
+                <td>202</td>
+                <td>1112</td>
+                <td>1112</td>
+            </tr>
+            <tr>
+                <td>10950</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10950.png">
+                </td>
+                <td>Snake</td>
+                <td>63</td>
+                <td>Brute</td>
+                <td>Earth</td>
+                <td>Medium</td>
+                <td>239485</td>
+                <td>104</td>
+                <td>312</td>
+                <td>2303</td>
+                <td>768</td>
+            </tr>
+            <tr>
+                <td>10960</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10960.png">
+                </td>
+                <td>Bigfoot</td>
+                <td>63</td>
+                <td>Brute</td>
+                <td>Earth</td>
+                <td>Large</td>
+                <td>359227</td>
+                <td>234</td>
+                <td>390</td>
+                <td>1536</td>
+                <td>922</td>
+            </tr>
+            <tr>
+                <td>10970</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10970.png">
+                </td>
+                <td>Pasana</td>
+                <td>64</td>
+                <td>Demi-Human</td>
+                <td>Fire</td>
+                <td>Large</td>
+                <td>382507</td>
+                <td>321</td>
+                <td>321</td>
+                <td>1192</td>
+                <td>1192</td>
+            </tr>
+            <tr>
+                <td>10980</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10980.png">
+                </td>
+                <td>Wolf</td>
+                <td>64</td>
+                <td>Brute</td>
+                <td>Earth</td>
+                <td>Medium</td>
+                <td>255005</td>
+                <td>268</td>
+                <td>161</td>
+                <td>952</td>
+                <td>1584</td>
+            </tr>
+            <tr>
+                <td>10990</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/10990.png">
+                </td>
+                <td>Skeleton</td>
+                <td>65</td>
+                <td>Undead</td>
+                <td>Undead</td>
+                <td>Medium</td>
+                <td>271145</td>
+                <td>220</td>
+                <td>220</td>
+                <td>1233</td>
+                <td>1233</td>
+            </tr>
+            <tr>
+                <td>11000</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11000.png">
+                </td>
+                <td>Anubis</td>
+                <td>65</td>
+                <td>Demi-Human</td>
+                <td>Undead</td>
+                <td>Large</td>
+                <td>406717</td>
+                <td>495</td>
+                <td>165</td>
+                <td>822</td>
+                <td>2465</td>
+            </tr>
+            <tr>
+                <td>11010</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11010.png">
+                </td>
+                <td>Elder Willow</td>
+                <td>66</td>
+                <td>Plant</td>
+                <td>Fire</td>
+                <td>Large</td>
+                <td>431880</td>
+                <td>339</td>
+                <td>339</td>
+                <td>1274</td>
+                <td>1274</td>
+            </tr>
+            <tr>
+                <td>11020</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11020.png">
+                </td>
+                <td>Munak</td>
+                <td>66</td>
+                <td>Undead</td>
+                <td>Undead</td>
+                <td>Medium</td>
+                <td>287920</td>
+                <td>226</td>
+                <td>226</td>
+                <td>1274</td>
+                <td>1274</td>
+            </tr>
+            <tr>
+                <td>11030</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11030.png">
+                </td>
+                <td>Marc</td>
+                <td>67</td>
+                <td>Fish</td>
+                <td>Water</td>
+                <td>Small</td>
+                <td>152673</td>
+                <td>116</td>
+                <td>116</td>
+                <td>1317</td>
+                <td>1317</td>
+            </tr>
+            <tr>
+                <td>11040</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11040.png">
+                </td>
+                <td>Bongun</td>
+                <td>67</td>
+                <td>Undead</td>
+                <td>Undead</td>
+                <td>Medium</td>
+                <td>305346</td>
+                <td>232</td>
+                <td>232</td>
+                <td>1317</td>
+                <td>1317</td>
+            </tr>
+            <tr>
+                <td>11050</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11050.png">
+                </td>
+                <td>Greatest General</td>
+                <td>68</td>
+                <td>Formless</td>
+                <td>Fire</td>
+                <td>Large</td>
+                <td>485157</td>
+                <td>446</td>
+                <td>268</td>
+                <td>1088</td>
+                <td>1811</td>
+            </tr>
+            <tr>
+                <td>11060</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11060.png">
+                </td>
+                <td>Dokebi</td>
+                <td>68</td>
+                <td>Demon</td>
+                <td>Shadow</td>
+                <td>Small</td>
+                <td>161719</td>
+                <td>149</td>
+                <td>89</td>
+                <td>1086</td>
+                <td>1818</td>
+            </tr>
+            <tr>
+                <td>11070</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11070.png">
+                </td>
+                <td>Deviache</td>
+                <td>69</td>
+                <td>Fish</td>
+                <td>Water</td>
+                <td>Small</td>
+                <td>171107</td>
+                <td>61</td>
+                <td>183</td>
+                <td>2806</td>
+                <td>936</td>
+            </tr>
+            <tr>
+                <td>11080</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11080.png">
+                </td>
+                <td>Sohee</td>
+                <td>69</td>
+                <td>Demon</td>
+                <td>Water</td>
+                <td>Medium</td>
+                <td>342214</td>
+                <td>244</td>
+                <td>244</td>
+                <td>1403</td>
+                <td>1403</td>
+            </tr>
+            <tr>
+                <td>11090</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11090.png">
+                </td>
+                <td>Eggyra</td>
+                <td>70</td>
+                <td>Formless</td>
+                <td>Ghost</td>
+                <td>Medium</td>
+                <td>361690</td>
+                <td>125</td>
+                <td>375</td>
+                <td>2894</td>
+                <td>965</td>
+            </tr>
+            <tr>
+                <td>11100</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11100.png">
+                </td>
+                <td>Nine Tail</td>
+                <td>70</td>
+                <td>Brute</td>
+                <td>Fire</td>
+                <td>Small</td>
+                <td>180845</td>
+                <td>125</td>
+                <td>125</td>
+                <td>1447</td>
+                <td>1447</td>
+            </tr>
+            <tr>
+                <td>11110</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11110.png">
+                </td>
+                <td>Horong</td>
+                <td>71</td>
+                <td>Formless</td>
+                <td>Fire</td>
+                <td>Small</td>
+                <td>221616</td>
+                <td>128</td>
+                <td>128</td>
+                <td>1732</td>
+                <td>1732</td>
+            </tr>
+            <tr>
+                <td>11120</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11120.png">
+                </td>
+                <td>Flail-wielding Goblin</td>
+                <td>71</td>
+                <td>Demi-Human</td>
+                <td>Fire</td>
+                <td>Medium</td>
+                <td>443233</td>
+                <td>320</td>
+                <td>192</td>
+                <td>1386</td>
+                <td>2309</td>
+            </tr>
+            <tr>
+                <td>11130</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11130.png">
+                </td>
+                <td>Orc Zombie</td>
+                <td>72</td>
+                <td>Undead</td>
+                <td>Undead</td>
+                <td>Large</td>
+                <td>702868</td>
+                <td>295</td>
+                <td>491</td>
+                <td>2383</td>
+                <td>1432</td>
+            </tr>
+            <tr>
+                <td>11140</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11140.png">
+                </td>
+                <td>Orc Baby</td>
+                <td>72</td>
+                <td>Demi-Human</td>
+                <td>Earth</td>
+                <td>Small</td>
+                <td>234289</td>
+                <td>131</td>
+                <td>131</td>
+                <td>1789</td>
+                <td>1789</td>
+            </tr>
+            <tr>
+                <td>11150</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11150.png">
+                </td>
+                <td>Mace-wielding Goblin</td>
+                <td>73</td>
+                <td>Demi-Human</td>
+                <td>Water</td>
+                <td>Medium</td>
+                <td>495508</td>
+                <td>268</td>
+                <td>268</td>
+                <td>1849</td>
+                <td>1849</td>
+            </tr>
+            <tr>
+                <td>11160</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11160.png">
+                </td>
+                <td>Mace-wielding Kobold</td>
+                <td>73</td>
+                <td>Demi-Human</td>
+                <td>Fire</td>
+                <td>Medium</td>
+                <td>495508</td>
+                <td>335</td>
+                <td>201</td>
+                <td>1480</td>
+                <td>2466</td>
+            </tr>
+            <tr>
+                <td>11170</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11170.png">
+                </td>
+                <td>Skeleton General</td>
+                <td>74</td>
+                <td>Undead</td>
+                <td>Undead</td>
+                <td>Medium</td>
+                <td>524097</td>
+                <td>274</td>
+                <td>274</td>
+                <td>1913</td>
+                <td>1913</td>
+            </tr>
+            <tr>
+                <td>11180</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11180.png">
+                </td>
+                <td>Jakk</td>
+                <td>74</td>
+                <td>Formless</td>
+                <td>Fire</td>
+                <td>Small</td>
+                <td>262048</td>
+                <td>206</td>
+                <td>69</td>
+                <td>1273</td>
+                <td>3798</td>
+            </tr>
+            <tr>
+                <td>11190</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11190.png">
+                </td>
+                <td>Orc Warrior</td>
+                <td>75</td>
+                <td>Demi-Human</td>
+                <td>Earth</td>
+                <td>Large</td>
+                <td>830591</td>
+                <td>210</td>
+                <td>630</td>
+                <td>3956</td>
+                <td>1319</td>
+            </tr>
+            <tr>
+                <td>11200</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11200.png">
+                </td>
+                <td>Hammer-wielding Goblin</td>
+                <td>75</td>
+                <td>Demi-Human</td>
+                <td>Earth</td>
+                <td>Medium</td>
+                <td>553727</td>
+                <td>350</td>
+                <td>210</td>
+                <td>1583</td>
+                <td>2637</td>
+            </tr>
+            <tr>
+                <td>11210</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11210.png">
+                </td>
+                <td>Hammer-wielding Kobold</td>
+                <td>76</td>
+                <td>Demi-Human</td>
+                <td>Poison</td>
+                <td>Medium</td>
+                <td>584424</td>
+                <td>286</td>
+                <td>286</td>
+                <td>2044</td>
+                <td>2044</td>
+            </tr>
+            <tr>
+                <td>11220</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11220.png">
+                </td>
+                <td>Orc Skeleton</td>
+                <td>76</td>
+                <td>Undead</td>
+                <td>Undead</td>
+                <td>Large</td>
+                <td>876636</td>
+                <td>429</td>
+                <td>429</td>
+                <td>2044</td>
+                <td>2044</td>
+            </tr>
+            <tr>
+                <td>11230</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11230.png">
+                </td>
+                <td>Ghoul</td>
+                <td>77</td>
+                <td>Undead</td>
+                <td>Undead</td>
+                <td>Medium</td>
+                <td>616211</td>
+                <td>292</td>
+                <td>292</td>
+                <td>2111</td>
+                <td>2111</td>
+            </tr>
+            <tr>
+                <td>11240</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11240.png">
+                </td>
+                <td>Axe-wielding Goblin</td>
+                <td>77</td>
+                <td>Demi-Human</td>
+                <td>Poison</td>
+                <td>Medium</td>
+                <td>616211</td>
+                <td>292</td>
+                <td>292</td>
+                <td>2111</td>
+                <td>2111</td>
+            </tr>
+            <tr>
+                <td>11250</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11250.png">
+                </td>
+                <td>Marionet</td>
+                <td>78</td>
+                <td>Demon</td>
+                <td>Ghost</td>
+                <td>Small</td>
+                <td>324557</td>
+                <td>149</td>
+                <td>149</td>
+                <td>2179</td>
+                <td>2179</td>
+            </tr>
+            <tr>
+                <td>11260</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11260.png">
+                </td>
+                <td>Ground Petit</td>
+                <td>79</td>
+                <td>Dragon</td>
+                <td>Earth</td>
+                <td>Medium</td>
+                <td>683157</td>
+                <td>304</td>
+                <td>304</td>
+                <td>2248</td>
+                <td>2248</td>
+            </tr>
+            <tr>
+                <td>11270</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11270.png">
+                </td>
+                <td>Dagger-wielding Goblin</td>
+                <td>79</td>
+                <td>Demi-Human</td>
+                <td>Wind</td>
+                <td>Medium</td>
+                <td>683157</td>
+                <td>304</td>
+                <td>304</td>
+                <td>2248</td>
+                <td>2248</td>
+            </tr>
+            <tr>
+                <td>11280</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11280.png">
+                </td>
+                <td>Sky Petit</td>
+                <td>80</td>
+                <td>Dragon</td>
+                <td>Wind</td>
+                <td>Large</td>
+                <td>1077550</td>
+                <td>349</td>
+                <td>581</td>
+                <td>3088</td>
+                <td>1855</td>
+            </tr>
+            <tr>
+                <td>11290</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11290.png">
+                </td>
+                <td>Baphomet Jr</td>
+                <td>80</td>
+                <td>Demon</td>
+                <td>Shadow</td>
+                <td>Small</td>
+                <td>359183</td>
+                <td>78</td>
+                <td>233</td>
+                <td>4605</td>
+                <td>1542</td>
+            </tr>
+            <tr>
+                <td>11300</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11300.png">
+                </td>
+                <td>Goblin Archer</td>
+                <td>81</td>
+                <td>Demi-Human</td>
+                <td>Poison</td>
+                <td>Small</td>
+                <td>439561</td>
+                <td>119</td>
+                <td>198</td>
+                <td>3694</td>
+                <td>2221</td>
+            </tr>
+            <tr>
+                <td>11310</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11310.png">
+                </td>
+                <td>Kobold Archer</td>
+                <td>82</td>
+                <td>Demi-Human</td>
+                <td>Fire</td>
+                <td>Small</td>
+                <td>462351</td>
+                <td>161</td>
+                <td>161</td>
+                <td>2872</td>
+                <td>2872</td>
+            </tr>
+            <tr>
+                <td>11320</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11320.png">
+                </td>
+                <td>Deviruchi</td>
+                <td>83</td>
+                <td>Demon</td>
+                <td>Shadow</td>
+                <td>Small</td>
+                <td>485907</td>
+                <td>246</td>
+                <td>82</td>
+                <td>1976</td>
+                <td>5926</td>
+            </tr>
+            <tr>
+                <td>11330</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11330.png">
+                </td>
+                <td>Orc Lady</td>
+                <td>83</td>
+                <td>Demi-Human</td>
+                <td>Earth</td>
+                <td>Medium</td>
+                <td>971814</td>
+                <td>328</td>
+                <td>328</td>
+                <td>2963</td>
+                <td>2963</td>
+            </tr>
+            <tr>
+                <td>11340</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11340.png">
+                </td>
+                <td>Zenorc</td>
+                <td>84</td>
+                <td>Demi-Human</td>
+                <td>Shadow</td>
+                <td>Medium</td>
+                <td>1020492</td>
+                <td>334</td>
+                <td>334</td>
+                <td>3056</td>
+                <td>3056</td>
+            </tr>
+            <tr>
+                <td>11350</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11350.png">
+                </td>
+                <td>Goblin Steamrider</td>
+                <td>85</td>
+                <td>Demi-Human</td>
+                <td>Wind</td>
+                <td>Medium</td>
+                <td>1070770</td>
+                <td>170</td>
+                <td>510</td>
+                <td>6299</td>
+                <td>2100</td>
+            </tr>
+            <tr>
+                <td>11360</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11360.png">
+                </td>
+                <td>Axe-wielding Kobold</td>
+                <td>85</td>
+                <td>Demi-Human</td>
+                <td>Wind</td>
+                <td>Medium</td>
+                <td>1070770</td>
+                <td>340</td>
+                <td>340</td>
+                <td>3150</td>
+                <td>3150</td>
+            </tr>
+            <tr>
+                <td>11370</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11370.png">
+                </td>
+                <td>High Orc</td>
+                <td>86</td>
+                <td>Demi-Human</td>
+                <td>Fire</td>
+                <td>Large</td>
+                <td>1684023</td>
+                <td>649</td>
+                <td>389</td>
+                <td>2595</td>
+                <td>4330</td>
+            </tr>
+            <tr>
+                <td>11380</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11380.png">
+                </td>
+                <td>Nightmare</td>
+                <td>87</td>
+                <td>Demon</td>
+                <td>Ghost</td>
+                <td>Large</td>
+                <td>1764392</td>
+                <td>660</td>
+                <td>396</td>
+                <td>2674</td>
+                <td>4456</td>
+            </tr>
+            <tr>
+                <td>11390</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11390.png">
+                </td>
+                <td>Orc Archer</td>
+                <td>88</td>
+                <td>Demi-Human</td>
+                <td>Earth</td>
+                <td>Medium</td>
+                <td>1231545</td>
+                <td>358</td>
+                <td>358</td>
+                <td>3441</td>
+                <td>3441</td>
+            </tr>
+            <tr>
+                <td>11400</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11400.png">
+                </td>
+                <td>Rotar Zairo</td>
+                <td>88</td>
+                <td>Demi-Human</td>
+                <td>Wind</td>
+                <td>Large</td>
+                <td>1847317</td>
+                <td>671</td>
+                <td>403</td>
+                <td>2754</td>
+                <td>4584</td>
+            </tr>
+            <tr>
+                <td>11410</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11410.png">
+                </td>
+                <td>Wind Ghost</td>
+                <td>89</td>
+                <td>Demon</td>
+                <td>Wind</td>
+                <td>Medium</td>
+                <td>1293365</td>
+                <td>546</td>
+                <td>182</td>
+                <td>2369</td>
+                <td>7107</td>
+            </tr>
+            <tr>
+                <td>11420</td>
+                <td><img src="https://storage.googleapis.com/piyaphanwebsite.appspot.com/ROX/MONSDB/IMGMONS/11420.png">
+                </td>
+                <td>Wraith</td>
+                <td>90</td>
+                <td>Undead</td>
+                <td>Undead</td>
+                <td>Large</td>
+                <td>2036084</td>
+                <td>833</td>
+                <td>278</td>
+                <td>2445</td>
+                <td>7325</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th class="th-sm">No</th>
+                <th class="th-sm">IMG</th>
+                <th class="th-sm">Name</th>
+                <th class="th-sm">LV</th>
+                <th class="th-sm">Type</th>
+                <th class="th-sm">Element</th>
+                <th class="th-sm">Size</th>
+                <th class="th-sm">&nbsp;HP&nbsp;</th>
+                <th class="th-sm">BASE EXP</th>
+                <th class="th-sm">JOB EXP</th>
+                <th class="th-sm">HP/BASE</th>
+                <th class="th-sm">HP/JOB</th>
+            </tr>
+        </tfoot>
+    </table>
+    <script>
+        function search() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("monsters");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+        function filterMONTYPE() {
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("MONTYPE");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("monsters");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[4];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+        function filterMONELEMENT() {
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("MONELEMENT");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("monsters");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[5];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+        function filterMONSIZE() {
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("MONSIZE");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("monsters");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[6];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+        window.onscroll = function () { myFunction() };
+
+        var header = document.getElementById("myHeader");
+        var sticky = header.offsetTop;
+
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+    </script>
+
+</body>
+
+</html>
